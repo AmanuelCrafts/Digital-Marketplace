@@ -12,11 +12,18 @@ type Category = (typeof PRODUCT_CATEGORIES)[number];
 interface NavItemProps {
   category: Category;
   handleOpen: () => void;
+  close: () => void;
   isOpen: boolean;
   isAnyOpen: boolean;
 }
 
-const NavItem = ({ isAnyOpen, category, handleOpen, isOpen }: NavItemProps) => {
+const NavItem = ({
+  isAnyOpen,
+  category,
+  handleOpen,
+  close,
+  isOpen,
+}: NavItemProps) => {
   return (
     <div className="flex">
       <div className="relative flex items-center">

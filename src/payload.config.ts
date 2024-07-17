@@ -3,14 +3,25 @@ import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import path from "path";
+import { Users } from "./collection/Users";
+import dotenv from "dotenv";
+import { Products } from "./collection/Products/Products";
+import { Media } from "./collection/Media";
+import { ProductFiles } from "./collection/ProductFile";
+import { Orders } from "./collection/Orders";
+
+dotenv.config({
+  path: path.resolve(__dirname, "../.env"),
+});
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "",
-  collections: [],
+  collections: [Users, Products, Media, ProductFiles, Orders],
   routes: {
     admin: "/sell",
   },
   admin: {
+    user: "users",
     bundler: webpackBundler(),
     meta: {
       titleSuffix: "- HippoMart",
